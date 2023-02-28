@@ -65,17 +65,6 @@ function build_scatterplot_length() {
 
       });
 
-	const chartTitle = "Sepal Length vs Petal Length";
-
-	d3.select("svg")
-	  .append("text")
-	    .attr("x", (WIDTH / 2)) // center horizontally
-	    .attr("y", MARGINS.top / 2) // position at top of chart area
-	    .attr("text-anchor", "middle") // center align text
-	    .attr("font-size", "1.5em") // set font size
-	    .text(chartTitle); // set text content
-
-
 }
 build_scatterplot_length();
 
