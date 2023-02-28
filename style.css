@@ -13,6 +13,10 @@ body {
 	font-family: Arial;
 }
 
+#header_2 {
+  text-align: center;
+}
+
 .header{
 	text-align: center;
 }
