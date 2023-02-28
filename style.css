@@ -1,0 +1,33 @@
+
+
+title {
+	font-family: Arial;
+}
+
+body {
+	font-family: Arial;
+}
+
+
+#header_1{
+	font-family: Arial;
+}
+
+.header{
+	text-align: center;
+}
+
+ .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      
+      /* Set the width of the columns to 33.33% and add some margin */
+      .column {
+        width: calc(33.33% - 20px); /* Subtract any margin/padding */
+        margin: 10px;
+        background-color: #eee;
+        padding: 20px;
+        box-sizing: border-box;
+      }
