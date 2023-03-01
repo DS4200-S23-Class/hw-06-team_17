@@ -63,8 +63,8 @@ function build_scatterplot_length() {
         .data(data)
         .enter()       
         .append("circle")  
-          .attr("cx", (d) => { return (X_SCALE(d.x) + MARGINS.left); }) 
-          .attr("cy", (d) => { return (X_SCALE(d.x) + MARGINS.top); }) 
+          .attr("cx", (d) => { return (X_SCALE(d.sepal_width) + MARGINS.left); }) 
+          .attr("cy", (d) => { return (X_SCALE(d.petal_width) + MARGINS.top); }) 
           .attr("r", 20)
           .attr("class", "point");
           .attr("fill", (d) => { return colorScale1(d.species); });
@@ -93,7 +93,7 @@ function build_scatterplot_width() {
   			.domain(["setosa", "versicolor", "virginica"])
   			.range(["red", "green", "blue"]);
 
-	    const X_SCALE = d3.scaleLinear()
+	    const X_SCALE1 = d3.scaleLinear()
 	        .domain([0, MAX_X1])
 	        .range([0, VIS_WIDTH]);
 	        
@@ -110,8 +110,8 @@ function build_scatterplot_width() {
         .data(data)
         .enter()       
         .append("circle")  
-          .attr("cx", (d) => { return (X_SCALE1(d.x) + MARGINS.left); }) 
-          .attr("cy", (d) => { return (X_SCALE1(d.x) + MARGINS.top); }) 
+          .attr("cx", (d) => { return (X_SCALE1(d.sepal_length) + MARGINS.left); }) 
+          .attr("cy", (d) => { return (X_SCALE1(d.petal_length) + MARGINS.top); }) 
           .attr("r", 20)
           .attr("class", "point")
           .attr("fill", (d) => { return colorScale2(d.species); });
