@@ -59,15 +59,15 @@ function build_scatterplot_length() {
 	        .range([VIS_HEIGHT, 0]);
 
 
-    FRAME2.selectAll("points")  
-        .data(data)
-        .enter()       
-        .append("circle")  
-          .attr("cx", (d) => { return (X_SCALE(d.sepal_width) + MARGINS.left); }) 
-          .attr("cy", (d) => { return (X_SCALE(d.petal_width) + MARGINS.top); }) 
-          .attr("r", 20)
-          .attr("class", "point");
-          .attr("fill", (d) => { return colorScale1(d.species); });
+	    FRAME2.selectAll("points")  
+	        .data(data)
+	        .enter()       
+	        .append("circle")  
+	          .attr("cx", (d) => { return (X_SCALE(d.sepal_width) + MARGINS.left); }) 
+	          .attr("cy", (d) => { return (X_SCALE(d.petal_width) + MARGINS.top); }) 
+	          .attr("r", 20)
+	          .attr("class", "point");
+	          .attr("fill", (d) => { return colorScale1(d.species); });
 
       });
 
@@ -106,17 +106,17 @@ function build_scatterplot_width() {
 	        .range([VIS_HEIGHT, 0]);
 
 
-    FRAME1.selectAll("points")  
-        .data(data)
-        .enter()       
-        .append("circle")  
-          .attr("cx", (d) => { return (X_SCALE1(d.sepal_length) + MARGINS.left); }) 
-          .attr("cy", (d) => { return (X_SCALE1(d.petal_length) + MARGINS.top); }) 
-          .attr("r", 20)
-          .attr("class", "point")
-          .attr("fill", (d) => { return colorScale2(d.species); });
+	    FRAME1.selectAll("points")  
+	        .data(data)
+	        .enter()       
+	        .append("circle")  
+	          .attr("cx", (d) => { return (X_SCALE1(d.sepal_length) + MARGINS.left); }) 
+	          .attr("cy", (d) => { return (X_SCALE1(d.petal_length) + MARGINS.top); }) 
+	          .attr("r", 20)
+	          .attr("class", "point")
+	          .attr("fill", (d) => { return colorScale2(d.species); });
 
-      });
+	      });
 
 }
 
