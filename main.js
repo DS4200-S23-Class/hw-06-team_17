@@ -34,12 +34,17 @@ function build_scatterplot_length() {
 	 d3.csv("data/iris.csv", (d) => {
 	    return {
 	        sepal_width: +d.sepal_width,
-	        petal_width: +d.petal_width
+	        petal_width: +d.petal_width,
+	        species: +d.species
 	    };
 	}).then((data) => {
 	    const MAX_X = d3.max(data, (d) => {
 	        return d.sepal_width;
 	    });
+
+	    const colorScale1 = d3.scaleOrdinal()
+  			.domain(["setosa", "versicolor", "virginica"])
+  			.range(["red", "green", "blue"]);
 
 	    const X_SCALE = d3.scaleLinear()
 	        .domain([0, MAX_X])
@@ -62,6 +67,7 @@ function build_scatterplot_length() {
           .attr("cy", (d) => { return (X_SCALE(d.x) + MARGINS.top); }) 
           .attr("r", 20)
           .attr("class", "point");
+          .attr("fill", (d) => { return colorScale1(d.species); });
 
       });
 
@@ -75,11 +81,17 @@ function build_scatterplot_width() {
 	    return {
 	        sepal_length: +d.sepal_length,
 	        petal_length: +d.petal_length
+	        species: +d.species
 	    };
+
 	}).then((data) => {
 	    const MAX_X1 = d3.max(data, (d) => {
 	        return d.sepal_length;
 	    });
+
+	    const colorScale2 = d3.scaleOrdinal()
+  			.domain(["setosa", "versicolor", "virginica"])
+  			.range(["red", "green", "blue"]);
 
 	    const X_SCALE = d3.scaleLinear()
 	        .domain([0, MAX_X1])
@@ -101,10 +113,47 @@ function build_scatterplot_width() {
           .attr("cx", (d) => { return (X_SCALE1(d.x) + MARGINS.left); }) 
           .attr("cy", (d) => { return (X_SCALE1(d.x) + MARGINS.top); }) 
           .attr("r", 20)
-          .attr("class", "point");
+          .attr("class", "point")
+          .attr("fill", (d) => { return colorScale2(d.species); });
 
       });
 
 }
 
+
 build_scatterplot_width();
+
+function build_barplot() {
+	d3.csv("data/iris.csv", (d) => {
+	    const counts = d3.rollups(data, v => v.length, d => d.species);
+
+	 // Set the scales
+  	const X_SCALE3 = d3.scaleBand()
+	    .domain(counts.map(d => d[0]))
+	    .range([MARGINS.left, FRAME_WIDTH - MARGINS.right])
+	    .padding(0.1);
+
+  	const Y_SCALE3 = d3.scaleLinear()
+    	.domain([0, d3.max(counts, d => d[1])])
+	    .range([VIS_HEIGHT - MARGINS.bottom, MARGINS.top]);
+
+	const colorScale = d3.scaleOrdinal()
+  		.domain(data.map(d => d.species))
+  		.range(['#1f77b4', '#ff7f0e', '#2ca02c']);
+
+    FRAME3.selectAll("rect")
+	    .data(data)
+		.enter()
+		.append('rect')
+		.attr('class', 'bar')
+		.attr('x', d => X_SCALE3(d.species) + MARGINS.left)
+		.attr('y', d => VIS_HEIGHT + MARGINS.top - Y_SCALE(d.count))
+		.attr('height', d => Y_SCALE(d.count))
+		.attr('width', X_SCALE3.bandwidth())
+		.style('fill', (d, i) => colorScale(i));
+
+      });
+
+}
+
+build_barplot();
