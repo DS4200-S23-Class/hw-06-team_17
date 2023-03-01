@@ -66,7 +66,7 @@ function build_scatterplot_length() {
 	          .attr("cx", (d) => { return (X_SCALE(d.sepal_width) + MARGINS.left); }) 
 	          .attr("cy", (d) => { return (X_SCALE(d.petal_width) + MARGINS.top); }) 
 	          .attr("r", 20)
-	          .attr("class", "point");
+	          .attr("class", "point")
 	          .attr("fill", (d) => { return colorScale1(d.species); });
 
       });
